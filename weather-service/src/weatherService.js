@@ -6,7 +6,7 @@ const {
 const GetWeather = async (call, callback) => {
   console.log("Request received: " + JSON.stringify(call));
 
-  var { city } = call.request;
+  const { city } = call.request;
 
   await simulateProcess();
 
