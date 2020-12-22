@@ -1,6 +1,7 @@
 const dbConfig = require("../config/index").database;
 const { Sequelize } = require("sequelize");
 const EoloplantModel = require("./eoloplantModel");
+const { logger } = require("../utils/logger");
 
 const sequelize = new Sequelize(
   dbConfig.database,
@@ -19,7 +20,7 @@ const initExampleData = async () => {
     await Eoloplant.create({city: "Barcelona", progress: 75});
     await Eoloplant.create({city: "Valladolid", progress: 100, completed: true, planning: "valladolid-sunny-flat"});
   } catch (error) {
-    console.log(error.message || "Error initializing DB example data");
+    logger.error(error.message || "Error initializing DB example data");
   }
 };
 

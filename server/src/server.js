@@ -1,6 +1,8 @@
 const express = require("express");
 const eoloPlantsRouter = require("./routes/eoloplantsRouter");
 const db = require("./models");
+const { initConsumer } = require("./services/qeues/eoloplantConsumerMQService");
+const { logger } = require("./utils/logger");
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -12,18 +14,20 @@ const main = async () => {
   try {
     await db.sequelize.sync({ force: true });
     await db.initExampleData();
-    console.log("Drop and re-sync db.");
+    logger.info("[Drop and re-sync db]");
+    initConsumer();
+    logger.info("[Consumer service started]");
   } catch (error) {
-    console.log(error);
+    logger.error(error);
   }
 
   app.listen(PORT, () => {
-    console.log(`Server API listening on port ${PORT}`);
+    logger.info(`Server API listening on port ${PORT}`);
   });
 
-  process.on("SIGINT", async () => {
+  process.on("exit", async () => {
       await db.sequelize.close();
-      console.log("Closed connection to the database");
+      logger.info("[Closed connection to the database]");
       process.exit(0);
   });
 };
