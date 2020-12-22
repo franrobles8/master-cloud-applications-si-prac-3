@@ -1,8 +1,15 @@
-const { Eoloplant } = require("../models");
+const { publishToQueue } = require("../services/qeues/eoloplantProducerMQService");
+const EoloplantService = require("../services/eoloplantService");
+const {
+    validateSchema,
+    eoloplantCreateBodySchema,
+    idRequestParamSchema
+} = require("./validators");
 
-const findAll = async (req, res) => {
+const findAll = async (_, res) => {
   try {
-    const eoloplants = await Eoloplant.findAll({});
+    const eoloplants = await EoloplantService.findAll();
+
     res.json({
       eoloplants,
     });
@@ -13,19 +20,12 @@ const findAll = async (req, res) => {
 
 const findOne = async (req, res) => {
   try {
-    const id = req.params.id;
-    const eoloplant = await Eoloplant.findAll({
-      where: {
-        id,
-      },
-    });
+    validateSchema(idRequestParamSchema, req.params);
 
-    if (!eoloplant || !eoloplant.length > 0) {
-      throw {
-        status: 404,
-        message: "Eoloplant not found",
-      };
-    }
+    const id = req.params.id;
+
+    const eoloplant = await EoloplantService.findOne(id);
+
     res.json(eoloplant);
   } catch (error) {
     res
@@ -36,8 +36,15 @@ const findOne = async (req, res) => {
 
 const create = async (req, res) => {
   try {
+    validateSchema(eoloplantCreateBodySchema, req.body);
+
     const { city } = req.body;
-    res.status(201).send(await Eoloplant.create({ city }));
+
+    const eoloplant = await EoloplantService.create(city);
+
+    await publishToQueue({id: eoloplant.id, city: eoloplant.city});
+
+    res.status(201).send({message: "Eoloplant has been created"});
   } catch (error) {
     res
       .status(error.status || 500)
@@ -47,16 +54,13 @@ const create = async (req, res) => {
 
 const remove = async (req, res) => {
   try {
+    validateSchema(idRequestParamSchema, req.params);
+
     const id = req.params.id;
-    const affectedRows = await Eoloplant.destroy({ where: { id } });
-    console.log(affectedRows);
-    if (!affectedRows) {
-      throw {
-        status: 404,
-        message: "Eoloplant not found",
-      };
-    }
-    res.status(200).send();
+
+    await EoloplantService.remove(id);
+    
+    res.status(200).json({message: "Eoloplant removed successfully"});
   } catch (error) {
     res
       .status(error.status || 500)
