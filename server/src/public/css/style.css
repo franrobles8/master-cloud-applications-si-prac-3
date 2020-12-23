@@ -1,0 +1,16 @@
+.main {
+    width: 90%;
+}
+
+.eoloplant {
+    margin-top: 15px;
+}
+
+.eoloplant__city {
+    font-weight: bold;
+    color: #212629;
+}
+
+#create-eoloplant-container {
+    margin-top: 20px;
+}

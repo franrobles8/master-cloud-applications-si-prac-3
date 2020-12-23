@@ -1,0 +1,30 @@
+<html>
+<head lang="en">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Eoloplants</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+</head>
+<body>
+    <div class="main container">
+        <h2 class="eoloplants-container__title">Eoloplants</h2>
+        <div id="eoloplants-container"></div>
+        <div id="create-eoloplant-container">
+            <h2>Create new Eoloplant</h2>
+            <form id="form-new-eoloplant">
+                <div class="form-group">
+                    <label for="city">City name:</label>
+                    <input type="text" class="form-control" id="city" name="city" aria-describedby="city" placeholder="Enter city">
+                    <small id="cityHelp" class="form-text text-muted">Enter the city where you want to create the eoloplant.</small>
+                </div>
+                <button type="submit" id="btn-add-eoloplant" class="btn btn-primary">Create</button>
+                <p class="error-create-eoloplant"></p>
+            </form>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="./js/eoloplants.js"></script>
+</body>
+</html>
