@@ -18,7 +18,7 @@ const findOne = async (id) => {
     };
   }
 
-  return eoloplant;
+  return eoloplant[0];
 };
 
 const create = async (city) => {
