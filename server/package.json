@@ -1,13 +1,17 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "",
+  "description": "Server to create and manage eoloplants",
   "main": "src/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node src/server.js"
   },
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/franrobles8/master-cloud-applications-si-prac-3.git"
+  },
+  "author": "Francisco Robles",
   "license": "ISC",
   "dependencies": {
     "amqplib": "^0.6.0",
