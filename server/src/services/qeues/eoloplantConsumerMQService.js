@@ -21,20 +21,17 @@ const initConsumer = () => {
 
       ch.consume(
         queueName,
-        (msg) => {
-          // Parse message and save progress into Database, timeout only to simulate processing...
-          setTimeout(async () => {
-            const { id, city, progress, completed, planning } = JSON.parse(
-              msg.content.toString()
-            );
+        async (msg) => {
+          const { id, city, progress, completed, planning } = JSON.parse(
+            msg.content.toString()
+          );
 
-            await Eoloplant.update(
-              { id, city, progress, completed, planning },
-              { where: { id } }
-            );
+          await Eoloplant.update(
+            { id, city, progress, completed, planning },
+            { where: { id } }
+          );
 
-            sendProgressMessage({ id, city, progress, completed, planning });
-          }, 8000);
+          sendProgressMessage({ id, city, progress, completed, planning });
         },
         { noAck: true }
       );
