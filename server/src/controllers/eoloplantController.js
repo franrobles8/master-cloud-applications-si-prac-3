@@ -44,7 +44,7 @@ const create = async (req, res) => {
 
     await publishToQueue({id: eoloplant.id, city: eoloplant.city});
 
-    res.status(201).send({message: "Eoloplant has been created"});
+    res.status(201).json({id: eoloplant.id, message: "Eoloplant has been created"});
   } catch (error) {
     res
       .status(error.status || 500)
@@ -59,7 +59,7 @@ const remove = async (req, res) => {
     const id = req.params.id;
 
     await EoloplantService.remove(id);
-    
+
     res.status(200).json({message: "Eoloplant removed successfully"});
   } catch (error) {
     res

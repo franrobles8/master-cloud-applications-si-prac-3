@@ -5,9 +5,14 @@ const db = require("./models");
 const { initConsumer } = require("./services/qeues/eoloplantConsumerMQService");
 const { logger } = require("./utils/logger");
 const mustacheExpress = require('mustache-express');
-
+const http = require('http');
+const WsServer = require('./services/websockets/server');
 const app = express();
-const PORT = process.env.PORT || 8080;
+const WebSocket = require('ws');
+
+const server = http.createServer(app);
+const wss = new WebSocket.Server({ server });
+const PORT = process.env.PORT || 3000;
 
 const main = async () => {
   app.use(express.json());
@@ -19,6 +24,7 @@ const main = async () => {
   app.engine('mustache', mustacheExpress());
 
   try {
+    WsServer.initialize(wss);
     await db.sequelize.sync({ force: true });
     await db.initExampleData();
     logger.info("[Drop and re-sync db]");
@@ -28,7 +34,7 @@ const main = async () => {
     logger.error(error);
   }
 
-  app.listen(PORT, () => {
+  server.listen(PORT, () => {
     logger.info(`Server API listening on port ${PORT}`);
   });
 

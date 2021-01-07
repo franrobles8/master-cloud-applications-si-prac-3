@@ -1,5 +1,10 @@
 const express = require("express");
-const { findAll, findOne, create, remove } = require("../controllers/eoloplantController");
+const {
+  findAll,
+  findOne,
+  create,
+  remove,
+} = require("../controllers/eoloplantController");
 const router = express.Router();
 
 router.get("/eoloplants", findAll);
