@@ -8,15 +8,15 @@
 		<version>2.4.1</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.cloudapps.eoloplanner</groupId>
+	<groupId>org.mastercloudapps</groupId>
 	<artifactId>planner</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>planner</name>
-	<description>Planner component of Eolo Planner platform</description>
+	<description>Planner component of Planner platform</description>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<java.version>11</java.version>
+		<java.version>14</java.version>
 		<os-maven-plugin.version>1.6.2</os-maven-plugin.version>
 		<protobuf-maven-plugin.version>0.6.1</protobuf-maven-plugin.version>
 	</properties>
