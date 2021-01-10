@@ -7,9 +7,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
-//import org.mastercloudapps.planner.weatherservice.WeatherServiceGrpc.WeatherServiceBlockingStub;
-//import org.mastercloudapps.planner.weatherservice.WeatherServiceOuterClass.GetWeatherRequest;
-//import org.mastercloudapps.planner.weatherservice.WeatherServiceOuterClass.Weather;
+import org.mastercloudapps.planner.weatherservice.WeatherServiceGrpc.WeatherServiceBlockingStub;
+import org.mastercloudapps.planner.weatherservice.WeatherServiceOuterClass.GetWeatherRequest;
+import org.mastercloudapps.planner.weatherservice.WeatherServiceOuterClass.Weather;
 
 import net.devh.boot.grpc.client.inject.GrpcClient;
 
@@ -17,21 +17,19 @@ import net.devh.boot.grpc.client.inject.GrpcClient;
 public class WeatherService {
 
 	private Logger log = LoggerFactory.getLogger(WeatherService.class);
-	
-//	@GrpcClient("weatherServer")
-//	private WeatherServiceBlockingStub client;
-	
-//	@Async
-//    public CompletableFuture<Weather> getWeather(String city) {
-//
-//        GetWeatherRequest request = GetWeatherRequest.newBuilder()
-//                .setCity(city)
-//                .build();
-//
-//        log.info("Executing weather request for city {}...", city);
-//        Weather response = this.client.getWeather(request);
-//
-//        return CompletableFuture.completedFuture(response);
-//    }
-	
+
+	@GrpcClient("weatherServer")
+	private WeatherServiceBlockingStub client;
+
+	@Async
+	public CompletableFuture<Weather> getWeather(String city) {
+
+		GetWeatherRequest request = GetWeatherRequest.newBuilder().setCity(city).build();
+
+		log.info("Executing weather request for city {}...", city);
+		Weather response = this.client.getWeather(request);
+
+		return CompletableFuture.completedFuture(response);
+	}
+
 }
