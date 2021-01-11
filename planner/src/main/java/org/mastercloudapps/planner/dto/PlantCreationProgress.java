@@ -1,13 +1,16 @@
 package org.mastercloudapps.planner.dto;
 
+import java.io.Serializable;
+
 public class PlantCreationProgress {
 
+	private static final long serialVersionUID = 1L;
 	private Long id;
 	private String city;
 	private int progress;
 	private boolean completed;
 	private String planning;
-	
+
 	public PlantCreationProgress(Long id, String city, int progress, boolean completed, String planning) {
 		super();
 		this.id = id;
@@ -18,7 +21,7 @@ public class PlantCreationProgress {
 	}
 
 	public PlantCreationProgress() {
-		
+
 	}
 
 	public Long getId() {
@@ -62,14 +65,9 @@ public class PlantCreationProgress {
 	}
 
 	@Override
-    public String toString() {
-        return "EoloPlantCreationProgress{" +
-                	"id=" + id + "," +
-                	"city='" + city + "\'," +
-                	"progress=" + progress + "," +
-                	"completed=" + completed + "," +
-                	"planning='" + planning + "\'" +
-                "}";
-    }
-	
+	public String toString() {
+		return "{" + "id:" + id + "," + "city:" + city + "," + "progress:" + progress + ","
+				+ "completed:" + completed + "," + "planning:" + planning + "}";
+	}
+
 }

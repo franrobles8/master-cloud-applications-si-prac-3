@@ -18,7 +18,7 @@ public class WeatherService {
 
 	private Logger log = LoggerFactory.getLogger(WeatherService.class);
 
-	@GrpcClient("weatherServer")
+	@GrpcClient("weatherClient")
 	private WeatherServiceBlockingStub client;
 
 	@Async

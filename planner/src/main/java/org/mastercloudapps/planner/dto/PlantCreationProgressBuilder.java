@@ -8,10 +8,6 @@ public class PlantCreationProgressBuilder {
 	private boolean completed;
 	private String planning;
 	
-	public PlantCreationProgressBuilder() {
-		
-	}
-	
 	public PlantCreationProgressBuilder id(Long id) {
         this.id = id;
         return this;

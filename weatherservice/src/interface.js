@@ -1,7 +1,7 @@
 const grpc = require('grpc');
 const protoLoader = require('@grpc/proto-loader');
 
-const packageDefinition = protoLoader.loadSync(__dirname + '/../WeatherService.proto',
+const packageDefinition = protoLoader.loadSync(__dirname + './../WeatherService.proto',
     {
         keepCase: true,
         longs: String,
@@ -12,4 +12,4 @@ const packageDefinition = protoLoader.loadSync(__dirname + '/../WeatherService.p
 
 const weatherServiceProto = grpc.loadPackageDefinition(packageDefinition);
 
-module.exports = weatherServiceProto.es.codeurjc.mastercloudapps.grpc.WeatherService;
+module.exports = weatherServiceProto.org.mastercloudapps.planner.weatherservice.WeatherService;

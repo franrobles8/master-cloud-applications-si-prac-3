@@ -15,4 +15,4 @@ function exec(serviceName, command) {
 exec('weatherservice', 'node src/server.js');
 exec('toposervice', 'mvn spring-boot:run');
 exec('server','node src/server.js');
-// exec('planner','mvn spring-boot:run');
+exec('planner','mvn spring-boot:run');

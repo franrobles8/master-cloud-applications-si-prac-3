@@ -16,12 +16,12 @@ public class QueuesConfiguration {
 			
 	@Bean
 	public Queue eoloplantCreationRequests() {
-		return new Queue(requestQueue, false);
+		return new Queue(requestQueue, true);
 	}
 
 	@Bean
 	public Queue eoloplantCreationProgressNotifications() {
-		return new Queue(progressQueue, false);
+		return new Queue(progressQueue, true);
 	}
 	
 }

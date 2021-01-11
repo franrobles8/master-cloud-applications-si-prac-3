@@ -13,4 +13,6 @@ const GetWeather = async (call, callback) => {
   callback(null, prepareResponse(city));
 };
 
-exports.GetWeather = GetWeather;
+module.exports = {
+  GetWeather
+};
